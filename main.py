@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import socket
 import urllib
 
+MAXIMUM_LIST_EXPECTED = 10
+
 
 def get_soup(url):
     return BeautifulSoup(requests.get(url).text)
@@ -60,7 +62,7 @@ for tr in trs:
         else:
             print("Droping invalid proxy")
             failed.append(proxy)
-        if len(proxies) > 5:
+        if len(proxies) > MAXIMUM_LIST_EXPECTED:
             break
 
 with open("proxies_list.txt", "w") as f:
